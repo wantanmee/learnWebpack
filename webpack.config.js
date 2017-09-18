@@ -14,7 +14,7 @@ module.exports = {
         app: './src/index.js',        
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: process.env.NODE_ENV === 'production' ? '[name].[chunkhash].js' : '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
@@ -23,7 +23,7 @@ module.exports = {
           filename: 'index.html'
       }),
       new CleanWebpackPlugin(['dist']),
-      new webpack.HotModuleReplacementPlugin(),
+    //   new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin()  
     ],
     module: {
